@@ -15,8 +15,8 @@ public class DriverHandler {
 
     public enum Device {
 
-        NEXUS ("nexus"),
-        MIPHONE("Mi Phone");
+        EMULATOR("nexus"),
+        REAL("MiPhone");
         private String name;
 
         Device(String name) {
@@ -38,7 +38,7 @@ public class DriverHandler {
     private static DesiredCapabilities getCapabilities (Device device)
     {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.UDID,                   getConfigProperty("udid"));
+        capabilities.setCapability(MobileCapabilityType.UDID,                   getConfigProperty(device+"Udid"));
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,			device);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,			getConfigProperty("platformName"));
         capabilities.setCapability(MobileCapabilityType.NO_RESET,				getConfigProperty("noReset"));
